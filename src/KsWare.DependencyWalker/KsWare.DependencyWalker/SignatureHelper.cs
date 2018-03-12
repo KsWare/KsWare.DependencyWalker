@@ -73,6 +73,7 @@ namespace KsWare.DependencyWalker {
 			SigModifier(mi,sb);
 			sb.Append("event ");
 			sb.Append($"{eventInfo.EventHandlerType} ");
+			sb.Append($"{eventInfo.Name}");
 
 			return sb.ToString();
 		}
@@ -88,14 +89,13 @@ namespace KsWare.DependencyWalker {
 				else if (fieldInfo.IsFamily) sb.Append("protected ");
 				else sb.Append("private ");
 
-				if (fieldInfo.IsStatic) sb.Append("static ");
-			}
+				if (fieldInfo.IsStatic && !fieldInfo.IsLiteral) sb.Append("static ");
+				if (fieldInfo.IsLiteral) sb.Append("const ");
+				if (fieldInfo.IsInitOnly) sb.Append("readonly ");
+			};
 
-			if (fieldInfo.IsLiteral) sb.Append("const ");
-			if (fieldInfo.IsInitOnly) sb.Append("readonly ");
-
-			sb.Append($"{fieldInfo.FieldType} ");
-
+			sb.Append(Sig(fieldInfo.FieldType));
+			sb.Append(" ");
 			sb.Append(fieldInfo.Name);
 
 			return sb.ToString();
@@ -118,15 +118,15 @@ namespace KsWare.DependencyWalker {
 			sb.Append(" ");
 
 			sb.Append(propertyInfo.Name);
-			sb.Append("{");
+			sb.Append(" {");
 
 			if (propertyInfo.CanRead) {
 				SigModifier(getter, sb);
-				sb.Append("get;");
+				sb.Append("get; ");
 			}
 			if (propertyInfo.CanWrite) {
 				SigModifier(setter, sb);
-				sb.Append("set;");
+				sb.Append("set; ");
 			}
 			sb.Append("}");
 

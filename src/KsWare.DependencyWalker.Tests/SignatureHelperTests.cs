@@ -89,7 +89,97 @@ namespace KsWare.DependencyWalker.Tests {
 			SignatureHelper.ForCompare.Sig(mi).Should().Be(result);
 		}
 
+		private class Events {
+			public event System.EventHandler A;
+			public static event System.EventHandler SA;
 
+			public event System.EventHandler B {
+				add { }
+				remove {}
+			}
+		}
+
+		[DataTestMethod]
+		[DataRow(typeof(Events), "A", "public event System.EventHandler A")]
+		[DataRow(typeof(Events), "SA", "public static event System.EventHandler SA")]
+		[DataRow(typeof(Events), "B", "public event System.EventHandler B")]
+		public void SigEventInfoTest(Type type, string name, string result) {
+			var mi = (EventInfo) type.GetMember(name,
+				BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic |
+				BindingFlags.DeclaredOnly)[0];
+			SignatureHelper.ForCompare.Sig(mi).Should().Be(result);
+		}
+
+		private class Properties {
+			public bool A { get; private set; }
+			public bool B { get; internal set; }
+			public bool C { get; set; }
+			internal bool D { get; private set; }
+			internal bool E { get; set; }
+			private bool F { get; set; }
+
+			public virtual bool VA { get; private set; }
+			public virtual bool VB { get; internal set; }
+			public virtual bool VC { get; set; }
+		}
+
+		[DataTestMethod]
+		[DataRow(typeof(Properties), "A", "public bool A { get; private set; }")]
+		[DataRow(typeof(Properties), "B", "public bool B { get; internal set; }")]
+		[DataRow(typeof(Properties), "C", "public bool C { get; set; }")]
+		[DataRow(typeof(Properties), "D", "internal bool D { get; private set; }")]
+		[DataRow(typeof(Properties), "E", "internal bool E { get; set; }")]
+		[DataRow(typeof(Properties), "F", "private bool F { get; set; }")]
+		[DataRow(typeof(Properties), "VA", "public virtual bool VA { get; private set; }")]
+		[DataRow(typeof(Properties), "VB", "public virtual bool VB { get; internal set; }")]
+		[DataRow(typeof(Properties), "VC", "public virtual bool VC { get; set; }")]
+		public void SigPropertyInfoTest(Type type, string name, string result) {
+			var mi = (PropertyInfo) type.GetMember(name,
+				BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic |
+				BindingFlags.DeclaredOnly)[0];
+			SignatureHelper.ForCompare.Sig(mi).Should().Be(result);
+		}
+
+		private class Fields {
+			public bool A;
+
+			public static bool SA;
+
+			public const bool CA = true;
+
+			public readonly bool RA = true;
+
+			public static readonly bool SRA = true;
+		}
+
+		[DataTestMethod]
+		[DataRow(typeof(Fields), "A", "public bool A")]
+		[DataRow(typeof(Fields), "SA", "public static bool SA")]
+		[DataRow(typeof(Fields), "CA", "public const bool CA")]
+		[DataRow(typeof(Fields), "RA", "public readonly bool RA")]
+		[DataRow(typeof(Fields), "SRA", "public static readonly bool SRA")]
+		public void SigFieldInfoTest(Type type, string name, string result) {
+			var mi = (FieldInfo) type.GetMember(name,
+				BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic |
+				BindingFlags.DeclaredOnly)[0];
+			SignatureHelper.ForCompare.Sig(mi).Should().Be(result);
+		}
+		
+		private class Constructors {
+			public Constructors() { }
+
+			static Constructors() { }
+		}
+
+		[DataTestMethod]
+		[DataRow(typeof(Constructors), ".ctor", "public .ctor()")]
+		[DataRow(typeof(Constructors), ".cctor", "static .cctor()")]
+		public void SigConstructorInfoTest(Type type, string name, string result) {
+			var mi = (ConstructorInfo) type.GetMember(name,
+				BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic |
+				BindingFlags.DeclaredOnly)[0];
+			SignatureHelper.ForCompare.Sig(mi).Should().Be(result);
+		}
 	}
 
 }
