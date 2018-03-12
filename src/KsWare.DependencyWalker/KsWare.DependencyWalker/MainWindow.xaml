@@ -7,16 +7,41 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TreeView x:Name="TreeView">
-			<TreeView.ItemTemplate>
-				<HierarchicalDataTemplate 
-					DataType="{x:Type local:AssemblyInfo}"
-					ItemsSource="{Binding ReferencedAssemblies}"
-					>
-					<TextBlock Text="{Binding AssemblyName.FullName}"/>
+        <TabControl>
+			<TabItem Header="Dependencies">
+				<TreeView x:Name="TreeView">
+					<TreeView.ItemTemplate>
+						<HierarchicalDataTemplate
+							DataType="{x:Type local:MyAssemblyInfo}"
+							ItemsSource="{Binding ReferencedAssemblies}">
+							<TextBlock Text="{Binding AssemblyName.FullName}" />
 
-				</HierarchicalDataTemplate>
-			</TreeView.ItemTemplate>
-        </TreeView>
+						</HierarchicalDataTemplate>
+					</TreeView.ItemTemplate>
+				</TreeView>
+			</TabItem>
+	        <TabItem Header="Types">
+		        <TreeView x:Name="TypesTreeView">
+			        <TreeView.ItemTemplate>
+				        <HierarchicalDataTemplate
+					        DataType="{x:Type local:MyAssemblyInfo}"
+					        ItemsSource="{Binding Types}">
+							<HierarchicalDataTemplate.ItemTemplate>
+								<HierarchicalDataTemplate DataType="{x:Type local:MyTypeInfo}" ItemsSource="{Binding Members}">
+									<HierarchicalDataTemplate.ItemTemplate>
+										<DataTemplate DataType="{x:Type local:MyMemberInfo}">
+											<TextBlock Text="{Binding DisplayName}" />
+										</DataTemplate>
+									</HierarchicalDataTemplate.ItemTemplate>
+									<TextBlock Text="{Binding DisplayName}" />
+								</HierarchicalDataTemplate>
+							</HierarchicalDataTemplate.ItemTemplate>
+					        <TextBlock Text="{Binding AssemblyName.FullName}" />
+
+				        </HierarchicalDataTemplate>
+			        </TreeView.ItemTemplate>
+		        </TreeView>
+			</TabItem>
+        </TabControl>
     </Grid>
 </Window>
