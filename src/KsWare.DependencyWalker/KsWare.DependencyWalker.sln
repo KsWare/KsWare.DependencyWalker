@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker", "KsWare.DependencyWalker\KsWare.DependencyWalker.csproj", "{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker.Tests", "..\KsWare.DependencyWalker.Tests\KsWare.DependencyWalker.Tests.csproj", "{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36E75653-28E9-47C9-80F5-A890A481E88C}
+	EndGlobalSection
+EndGlobal
