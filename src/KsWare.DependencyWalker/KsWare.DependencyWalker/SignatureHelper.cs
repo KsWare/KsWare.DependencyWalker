@@ -6,7 +6,7 @@ namespace KsWare.DependencyWalker {
 
 	// ?? System.Reflection.Emit.SignatureHelper
 
-	internal class SignatureHelper {
+	public class SignatureHelper {
 
 		private readonly SignatureMode _signatureMode;
 
@@ -37,11 +37,20 @@ namespace KsWare.DependencyWalker {
 		private void SigModifier(MethodBase methodBase, StringBuilder sb) {
 			if (_signatureMode != SignatureMode.InheriteDoc) {
 				if (methodBase.IsPublic) sb.Append("public ");
-				else if (methodBase.IsFamilyAndAssembly) sb.Append("protected internal ");
+				else if (methodBase.IsFamilyOrAssembly) sb.Append("protected internal ");
+				else if (methodBase.IsFamilyAndAssembly) sb.Append("protected private ");
 				else if (methodBase.IsAssembly) sb.Append("internal ");
 				else if (methodBase.IsFamily) sb.Append("protected ");
+				else sb.Append("private ");
 
-				if (methodBase.IsStatic) sb.Append("static ");
+				if (methodBase.IsStatic   ) sb.Append("static "  );
+				if (methodBase.IsAbstract ) sb.Append("abstract ");
+				if (methodBase.IsFinal    ) sb.Append("sealed "  );
+				if (methodBase.IsVirtual) {
+					sb.Append((methodBase.Attributes & MethodAttributes.NewSlot)>0
+						? "virtual "
+						: "override ");
+				}
 			}
 		}
 
@@ -57,12 +66,40 @@ namespace KsWare.DependencyWalker {
 		}
 
 		public string Sig(EventInfo eventInfo) {
-			
-			return $"event {eventInfo}// not implemented";
+			var sb = new StringBuilder();
+
+			var mi = eventInfo.AddMethod; // TODO
+
+			SigModifier(mi,sb);
+			sb.Append("event ");
+			sb.Append($"{eventInfo.EventHandlerType} ");
+
+			return sb.ToString();
 		}
 
 		public string Sig(FieldInfo fieldInfo) {
-			return $"field {fieldInfo} // not implemented";
+			var sb = new StringBuilder();
+
+			if (_signatureMode != SignatureMode.InheriteDoc) {
+				if (fieldInfo.IsPublic) sb.Append("public ");
+				else if (fieldInfo.IsFamilyOrAssembly) sb.Append("protected internal ");
+				else if (fieldInfo.IsFamilyAndAssembly) sb.Append("protected private ");
+				else if (fieldInfo.IsAssembly) sb.Append("internal ");
+				else if (fieldInfo.IsFamily) sb.Append("protected ");
+				else sb.Append("private ");
+
+				if (fieldInfo.IsStatic) sb.Append("static ");
+			}
+
+			if (fieldInfo.IsLiteral) sb.Append("const ");
+			if (fieldInfo.IsInitOnly) sb.Append("readonly ");
+
+			sb.Append($"{fieldInfo.FieldType} ");
+
+			sb.Append(fieldInfo.Name);
+
+			return sb.ToString();
+//			return $"field {fieldInfo} // not implemented";
 		}
 
 		public string Sig(PropertyInfo propertyInfo) {
@@ -73,6 +110,9 @@ namespace KsWare.DependencyWalker {
 			var mi = getter ?? setter;
 
 			if (mi.IsStatic) sb.Append("static ");
+			if (mi.IsFinal) sb.Append("sealed ");
+			if (mi.IsAbstract) sb.Append("abstract ");
+			if (mi.IsVirtual) sb.Append("virtual ");
 
 			sb.Append(Sig(propertyInfo.PropertyType));
 			sb.Append(" ");
@@ -81,7 +121,7 @@ namespace KsWare.DependencyWalker {
 			sb.Append("{");
 
 			if (propertyInfo.CanRead) {
-				SigModifier(getter,sb);
+				SigModifier(getter, sb);
 				sb.Append("get;");
 			}
 			if (propertyInfo.CanWrite) {
