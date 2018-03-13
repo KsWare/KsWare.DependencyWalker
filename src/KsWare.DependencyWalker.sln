@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker", "KsWare.DependencyWalker\KsWare.DependencyWalker.csproj", "{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker.Tests", "..\KsWare.DependencyWalker.Tests\KsWare.DependencyWalker.Tests.csproj", "{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker.Tests", "KsWare.DependencyWalker.Tests\KsWare.DependencyWalker.Tests.csproj", "{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
