@@ -4,15 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KsWare.DependencyWalker"
+        xmlns:appDomainWorkers="clr-namespace:KsWare.DependencyWalker.AppDomainWorkers"
+        xmlns:panelCompare="clr-namespace:KsWare.DependencyWalker.PanelCompare"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <TabControl>
+	<Grid>
+		<TabControl>
 			<TabItem Header="Dependencies">
 				<TreeView x:Name="TreeView">
 					<TreeView.ItemTemplate>
 						<HierarchicalDataTemplate
-							DataType="{x:Type local:MyAssemblyInfo}"
+							DataType="{x:Type appDomainWorkers:MyAssemblyInfo}"
 							ItemsSource="{Binding ReferencedAssemblies}">
 							<TextBlock Text="{Binding AssemblyName.FullName}" />
 
@@ -20,28 +22,34 @@
 					</TreeView.ItemTemplate>
 				</TreeView>
 			</TabItem>
-	        <TabItem Header="Types">
-		        <TreeView x:Name="TypesTreeView">
-			        <TreeView.ItemTemplate>
-				        <HierarchicalDataTemplate
-					        DataType="{x:Type local:MyAssemblyInfo}"
-					        ItemsSource="{Binding Types}">
+			<TabItem Header="Types">
+				<TreeView x:Name="TypesTreeView">
+					<TreeView.ItemTemplate>
+						<HierarchicalDataTemplate
+							DataType="{x:Type appDomainWorkers:MyAssemblyInfo}"
+							ItemsSource="{Binding Types}">
 							<HierarchicalDataTemplate.ItemTemplate>
-								<HierarchicalDataTemplate DataType="{x:Type local:MyTypeInfo}" ItemsSource="{Binding Members}">
+								<HierarchicalDataTemplate DataType="{x:Type appDomainWorkers:MyTypeInfo}" ItemsSource="{Binding Members}">
 									<HierarchicalDataTemplate.ItemTemplate>
-										<DataTemplate DataType="{x:Type local:MyMemberInfo}">
+										<DataTemplate DataType="{x:Type appDomainWorkers:MyMemberInfo}">
 											<TextBlock Text="{Binding DisplayName}" />
 										</DataTemplate>
 									</HierarchicalDataTemplate.ItemTemplate>
 									<TextBlock Text="{Binding DisplayName}" />
 								</HierarchicalDataTemplate>
 							</HierarchicalDataTemplate.ItemTemplate>
-					        <TextBlock Text="{Binding AssemblyName.FullName}" />
+							<TextBlock Text="{Binding AssemblyName.FullName}" />
 
-				        </HierarchicalDataTemplate>
-			        </TreeView.ItemTemplate>
-		        </TreeView>
+						</HierarchicalDataTemplate>
+					</TreeView.ItemTemplate>
+				</TreeView>
 			</TabItem>
-        </TabControl>
-    </Grid>
+			<TabItem Header="Compare">
+				<panelCompare:ComparePanelView />
+			</TabItem>
+			<TabItem Header="AppDomain Test">
+				<local:TestlView />
+			</TabItem>
+		</TabControl>
+	</Grid>
 </Window>

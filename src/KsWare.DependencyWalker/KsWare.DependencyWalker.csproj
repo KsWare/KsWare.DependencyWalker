@@ -33,11 +33,49 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation, Version=0.18.11.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.BusinessFramework, Version=0.18.11.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.BusinessFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Core, Version=0.18.11.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Labs, Version=0.18.11.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.Labs.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Themes, Version=0.18.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Themes.Aero2Fix, Version=0.18.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.Themes.Aero2Fix.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.ViewFramework, Version=0.18.11.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.ViewFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.ViewModelFramework, Version=0.18.11.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.11\lib\net45\KsWare.Presentation.ViewModelFramework.dll</HintPath>
+    </Reference>
     <Reference Include="KsWare.SignatureGenerator, Version=0.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KsWare.SignatureGenerator.0.2.1\lib\net45\KsWare.SignatureGenerator.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +94,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppDomainWorkers\AssemblyWalker.cs" />
+    <Compile Include="AppDomainWorkers\MyAssemblyInfo.cs" />
+    <Compile Include="AppDomainWorkers\MyMemberInfo.cs" />
+    <Compile Include="AppDomainWorkers\MyTypeInfo.cs" />
+    <Compile Include="AppDomainWorkers\SampleAppDomainWorker.cs" />
+    <Compile Include="PanelCompare\AssemblyCompareResult.cs" />
+    <Compile Include="PanelCompare\ComparePanelVM.cs" />
+    <Compile Include="PanelCompare\CompareResult.cs" />
+    <Compile Include="PanelCompare\ICompareResult.cs" />
+    <Compile Include="PanelCompare\MemberCompareResult.cs" />
+    <Compile Include="PanelCompare\Result.cs" />
+    <Compile Include="PanelCompare\TypeCompareResult.cs" />
+    <Compile Include="Selector.xaml.cs">
+      <DependentUpon>Selector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectorVM.cs" />
+    <Compile Include="TestlView.xaml.cs">
+      <DependentUpon>TestlView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="PanelCompare\ComparePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,11 +125,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AssemblyWalker.cs" />
+    <Compile Include="PanelCompare\ComparePanelView.xaml.cs">
+      <DependentUpon>ComparePanelView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Selector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
