@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using KsWare.SignatureGenerator;
+using KsWare.CodeGenerator;
 
 namespace KsWare.DependencyWalker.AppDomainWorkers {
 
@@ -10,9 +10,9 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 			TypeInfo   = typeInfo;
 			MemberInfo = memberInfo;
 
-			SigForCompare = SignatureHelper.ForCompare.Sig(memberInfo);
-			SigForCompareIgnoreReturnType = SignatureHelper.ForCompareIgnoreReturnType.Sig(memberInfo);
-			SigForForCode = SignatureHelper.ForCode.Sig(memberInfo);
+			SigForCompare = Generator.ForCompare.Generate(memberInfo);
+			SigForCompareIgnoreReturnType = Generator.ForCompareIgnoreReturnType.Generate(memberInfo);
+			SigForCode = Generator.ForCode.Generate(memberInfo);
 		}
 
 		
@@ -21,7 +21,7 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 		public MemberInfo MemberInfo { get; }
 		public string DisplayName { get; set; }
 
-		public string SigForForCode { get;  }
+		public string SigForCode { get;  }
 
 		public string SigForCompareIgnoreReturnType { get; }
 

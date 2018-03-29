@@ -5,7 +5,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using KsWare.DependencyWalker.AppDomainWorkers;
 using KsWare.Presentation.ViewModelFramework;
-using KsWare.SignatureGenerator;
+using KsWare.CodeGenerator;
 
 namespace KsWare.DependencyWalker.PanelCompare {
 
@@ -84,20 +84,20 @@ namespace KsWare.DependencyWalker.PanelCompare {
 		}
 
 		private TypeCompareResult[] CompareAssembly(MyAssemblyInfo assemblyA, MyAssemblyInfo assemblyB) {
-			var all = assemblyA.Types.Select(t => t.FullName).Concat(assemblyB.Types.Select(t => t.FullName)).Distinct();
+			var all = assemblyA.Types.Select(t => t.DisplayName).Concat(assemblyB.Types.Select(t => t.DisplayName)).Distinct();
 
 			var result = new List<TypeCompareResult>();
 			foreach (var f in all) {
-				var ra = assemblyA.Types.Any(t => t.FullName == f);
-				var rb = assemblyB.Types.Any(t => t.FullName == f);
+				var ra = assemblyA.Types.Any(t => t.DisplayName == f);
+				var rb = assemblyB.Types.Any(t => t.DisplayName == f);
 				if (ra  && rb) result.Add(new TypeCompareResult(f,  Result.None));
 				if (ra  && !rb) result.Add(new TypeCompareResult(f, Result.OnlyLeft));
 				if (!ra && rb) result.Add(new TypeCompareResult(f,  Result.OnlyRight));
 			}
 
 			foreach (var c in result.Where(r => r.Result == Result.None)) {
-				c.TypeA = assemblyA.Types.First(t => t.FullName == c.Name);
-				c.TypeB = assemblyB.Types.First(t => t.FullName == c.Name);
+				c.TypeA = assemblyA.Types.First(t => t.DisplayName == c.Name);
+				c.TypeB = assemblyB.Types.First(t => t.DisplayName == c.Name);
 				c.SubResults = CompareType(c.TypeA, c.TypeB).ToArray();
 				c.Result = c.SubResults.All(r => r.Result == Result.Equal) ? Result.Equal : Result.Different;
 			}

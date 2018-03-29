@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using KsWare.SignatureGenerator;
+using KsWare.CodeGenerator;
 
 namespace KsWare.DependencyWalker.AppDomainWorkers {
 
@@ -135,10 +135,6 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 
 			if (includeMembers) {
 				foreach (var typeInfo in types) {
-					typeInfo.DisplayName = SignatureHelper.ForCompare.Sig(typeInfo.Type);
-				}
-
-				foreach (var typeInfo in types) {
 					var sm = typeInfo.Type.GetMembers(BindingFlags.Static| BindingFlags.Public | BindingFlags.DeclaredOnly)
 						.Select(m => new MyMemberInfo(typeInfo, m));
 					var im = typeInfo.Type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
@@ -146,7 +142,7 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 					typeInfo.Members = sm.Concat(im).ToArray();
 
 					foreach (var memberInfo in typeInfo.Members) {
-						memberInfo.DisplayName = SignatureHelper.ForCompare.Sig(memberInfo.MemberInfo);
+						memberInfo.DisplayName = Generator.ForCompare.Generate(memberInfo.MemberInfo);
 					}
 				}
 			}

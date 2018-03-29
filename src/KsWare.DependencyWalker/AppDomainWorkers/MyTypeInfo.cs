@@ -1,14 +1,19 @@
 ﻿using System;
+using KsWare.CodeGenerator;
 
 namespace KsWare.DependencyWalker.AppDomainWorkers {
 
 	public class MyTypeInfo : MarshalByRefObject {
 
-		public MyTypeInfo(Type type) { Type = type; }
+		public MyTypeInfo(Type type) {
+			Type = type;
+			FullName = type.FullName;
+			DisplayName = Generator.ForCompare.Generate(type);
+		}
 
 		public Type Type { get; }
 
-		public string FullName => Type.FullName;
+		public string FullName { get;  }
 
 		public MyMemberInfo[] Members { get; set; }
 

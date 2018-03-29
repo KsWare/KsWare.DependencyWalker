@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker.Tests", "KsWare.DependencyWalker.Tests\KsWare.DependencyWalker.Tests.csproj", "{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.SignatureGenerator", "..\..\KsWare.SignatureGenerator\src\KsWare.SignatureGenerator\KsWare.SignatureGenerator.csproj", "{6E42C707-26AE-46AF-B8D9-B86ACBA59914}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
