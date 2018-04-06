@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="clr-namespace:KsWare.DependencyWalker.UI"
-    xmlns:appDomainWorkers="clr-namespace:KsWare.DependencyWalker.AppDomainWorkers;assembly=KsWare.DependencyWalker"
+    xmlns:appDomainWorkers="clr-namespace:KsWare.DependencyWalker;assembly=KsWare.DependencyWalker"
     mc:Ignorable="d"
     Title="Dependency Walker" Height="350" Width="525"
     d:DataContext="{d:DesignInstance Type={x:Type ui:MainWindowVM}}"

@@ -1,7 +1,7 @@
 ﻿using System;
 using KsWare.CodeGenerator;
 
-namespace KsWare.DependencyWalker.AppDomainWorkers {
+namespace KsWare.DependencyWalker {
 
 	public class MyTypeInfo : MarshalByRefObject {
 

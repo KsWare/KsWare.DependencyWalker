@@ -2,7 +2,7 @@
 using System.Reflection;
 using KsWare.CodeGenerator;
 
-namespace KsWare.DependencyWalker.AppDomainWorkers {
+namespace KsWare.DependencyWalker {
 
 	public class MyMemberInfo : MarshalByRefObject {
 

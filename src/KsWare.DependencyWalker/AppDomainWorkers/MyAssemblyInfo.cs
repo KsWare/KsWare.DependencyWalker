@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace KsWare.DependencyWalker.AppDomainWorkers {
+namespace KsWare.DependencyWalker {
 
 	public class MyAssemblyInfo : MarshalByRefObject {
 
