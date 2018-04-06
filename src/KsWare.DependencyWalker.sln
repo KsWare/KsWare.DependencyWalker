@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker.Tests", "KsWare.DependencyWalker.Tests\KsWare.DependencyWalker.Tests.csproj", "{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.SignatureGenerator", "..\..\KsWare.SignatureGenerator\src\KsWare.SignatureGenerator\KsWare.SignatureGenerator.csproj", "{6E42C707-26AE-46AF-B8D9-B86ACBA59914}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KsWare.DependencyWalker.UI", "KsWare.DependencyWalker.UI\KsWare.DependencyWalker.UI.csproj", "{FA46FC61-09DB-4AA8-AF84-97E8CC3C6C07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B9D5B59-FE49-4536-9D40-93C509ED3CAE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E42C707-26AE-46AF-B8D9-B86ACBA59914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA46FC61-09DB-4AA8-AF84-97E8CC3C6C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA46FC61-09DB-4AA8-AF84-97E8CC3C6C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA46FC61-09DB-4AA8-AF84-97E8CC3C6C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA46FC61-09DB-4AA8-AF84-97E8CC3C6C07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

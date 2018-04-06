@@ -10,9 +10,11 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 			TypeInfo   = typeInfo;
 			MemberInfo = memberInfo;
 
-			SigForCompare = Generator.ForCompare.Generate(memberInfo);
-			SigForCompareIgnoreReturnType = Generator.ForCompareIgnoreReturnType.Generate(memberInfo);
-			SigForCode = Generator.ForCode.Generate(memberInfo);
+			Signature = Generator.ForSignature.Generate(memberInfo);
+			DeclareCode = Generator.ForDeclare.Generate(memberInfo);
+			Documentation = Generator.ForInheriteDoc.Generate(memberInfo);
+
+			DisplayName = Documentation;
 		}
 
 		
@@ -21,11 +23,12 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 		public MemberInfo MemberInfo { get; }
 		public string DisplayName { get; set; }
 
-		public string SigForCode { get;  }
 
-		public string SigForCompareIgnoreReturnType { get; }
+		public string Signature { get; }
 
-		public string SigForCompare { get; }
+		public string DeclareCode { get; }
+
+		public string Documentation { get; }
 	}
 
 }

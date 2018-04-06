@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using KsWare.CodeGenerator;
+using KsWare.CodeGenerator.Extensions;
 
 namespace KsWare.DependencyWalker.AppDomainWorkers {
 
@@ -135,11 +136,9 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 
 			if (includeMembers) {
 				foreach (var typeInfo in types) {
-					var sm = typeInfo.Type.GetMembers(BindingFlags.Static| BindingFlags.Public | BindingFlags.DeclaredOnly)
+					var all = typeInfo.Type.GetMembers(BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
 						.Select(m => new MyMemberInfo(typeInfo, m));
-					var im = typeInfo.Type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
-						.Select(m => new MyMemberInfo(typeInfo, m));
-					typeInfo.Members = sm.Concat(im).ToArray();
+					typeInfo.Members = all.Where(MemberFilter).ToArray();
 
 					foreach (var memberInfo in typeInfo.Members) {
 						memberInfo.DisplayName = Generator.ForCompare.Generate(memberInfo.MemberInfo);
@@ -147,6 +146,20 @@ namespace KsWare.DependencyWalker.AppDomainWorkers {
 				}
 			}
 			return types;
+		}
+
+		private bool MemberFilter(MyMemberInfo m) {
+			switch (m.MemberInfo.MemberType) {
+				case MemberTypes.Constructor:
+				case MemberTypes.Event:
+				case MemberTypes.Field:
+				case MemberTypes.Property: return true;
+				case MemberTypes.Method: return !((MethodInfo) m.MemberInfo).IsAccessor();
+				case MemberTypes.TypeInfo:
+				case MemberTypes.NestedType:
+				case MemberTypes.Custom:
+				default: return false;
+			}
 		}
 
 		public void UpdateExportedTypes(MyAssemblyInfo assemblyInfo, bool includeMembers) {

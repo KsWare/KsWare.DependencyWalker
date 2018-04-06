@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{12D3CD72-8458-4D2C-85C4-8EFB8F68B943}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>KsWare.DependencyWalker</RootNamespace>
-    <AssemblyName>KsWare.DependencyWalker</AssemblyName>
+    <ProjectGuid>{FA46FC61-09DB-4AA8-AF84-97E8CC3C6C07}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KsWare.DependencyWalker.UI</RootNamespace>
+    <AssemblyName>KsWare.DependencyWalker.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -32,15 +32,33 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="KsWare.CodeGenerator, Version=0.2.14.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KsWare.CodeGenerator.0.2.14\lib\net45\KsWare.CodeGenerator.dll</HintPath>
+    <Reference Include="KsWare.Presentation, Version=0.18.26.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.BusinessFramework, Version=0.18.26.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.BusinessFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Core, Version=0.18.26.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Labs, Version=0.18.26.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.Labs.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Themes, Version=0.18.26.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.Themes.Aero2Fix, Version=0.18.26.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.Themes.Aero2Fix.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.ViewFramework, Version=0.18.26.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.ViewFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="KsWare.Presentation.ViewModelFramework, Version=0.18.26.0, Culture=neutral, PublicKeyToken=398cf6eb36307095, processorArchitecture=MSIL">
+      <HintPath>..\packages\KsWare.Presentation.0.18.26\lib\net45\KsWare.Presentation.ViewModelFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -66,12 +84,14 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDomainWorkers\AssemblyWalker.cs" />
-    <Compile Include="AppDomainWorkers\MyAssemblyInfo.cs" />
-    <Compile Include="AppDomainWorkers\MyMemberInfo.cs" />
-    <Compile Include="AppDomainWorkers\MyTypeInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppVM.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +114,31 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\AppResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KsWare.DependencyWalker\KsWare.DependencyWalker.csproj">
+      <Project>{12d3cd72-8458-4d2c-85c4-8efb8f68b943}</Project>
+      <Name>KsWare.DependencyWalker</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

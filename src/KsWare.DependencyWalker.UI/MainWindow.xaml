@@ -1,13 +1,15 @@
-﻿<Window x:Class="KsWare.DependencyWalker.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KsWare.DependencyWalker"
-        xmlns:appDomainWorkers="clr-namespace:KsWare.DependencyWalker.AppDomainWorkers"
-        xmlns:panelCompare="clr-namespace:KsWare.DependencyWalker.PanelCompare"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+﻿<Window 
+	x:Class="KsWare.DependencyWalker.UI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:KsWare.DependencyWalker.UI"
+    xmlns:appDomainWorkers="clr-namespace:KsWare.DependencyWalker.AppDomainWorkers;assembly=KsWare.DependencyWalker"
+    mc:Ignorable="d"
+    Title="Dependency Walker" Height="350" Width="525"
+    d:DataContext="{d:DesignInstance Type={x:Type ui:MainWindowVM}}"
+>
 	<Grid>
 		<TabControl>
 			<TabItem Header="Dependencies">
@@ -43,12 +45,6 @@
 						</HierarchicalDataTemplate>
 					</TreeView.ItemTemplate>
 				</TreeView>
-			</TabItem>
-			<TabItem Header="Compare">
-				<panelCompare:ComparePanelView />
-			</TabItem>
-			<TabItem Header="AppDomain Test">
-				<local:TestlView />
 			</TabItem>
 		</TabControl>
 	</Grid>
