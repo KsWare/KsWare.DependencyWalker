@@ -16,9 +16,9 @@ using System.Windows;
 [assembly: ComVisible(false)]
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.None,ResourceDictionaryLocation.SourceAssembly)]
-[assembly: AssemblyVersion("0.1.11")]
-[assembly: AssemblyFileVersion("0.1.11")]
-[assembly: AssemblyInformationalVersion("0.1.11")]
+[assembly: AssemblyVersion("0.1.12")]
+[assembly: AssemblyFileVersion("0.1.12")]
+[assembly: AssemblyInformationalVersion("0.1.12")]
 
 // ReSharper disable once CheckNamespace
 namespace KsWare.DependencyWalker {
